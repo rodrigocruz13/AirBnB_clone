@@ -114,7 +114,7 @@ Kris Bredemeier - Holberton School (SF)
 
  Photo  | Name | Email
  -----  | ---- | -----
-![Miguelito](https://i.imgur.com/e6JXMgL.jpg)| Miguel Ángel Fajardo | 775@holbertonschool.com
+![Miguel](https://i.imgur.com/t5tSNmr.jpg)| Miguel Ángel Fajardo | 775@holbertonschool.com
 ![Rodrigo](https://i.imgur.com/36L7XQD.jpg)| Rodrigo Cruz | 754@holbertonschool.com
 #
 > SPECIAL THANKS
