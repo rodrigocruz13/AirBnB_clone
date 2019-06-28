@@ -8,10 +8,11 @@
 **mr bnb - AirBnB Clone** is the best place for getting a place to rent.  You can install it in your Linux distribution and you can use it intermediately according to your needs.
 
 ### Screenshots
+#### a. Interactive
+![Interactive](https://i.imgur.com/gB4TsGn.jpg)
 
-![1](https://i.imgur.com/vp8yVJp.jpg)
-
-
+#### b. No interactive mode
+![No interactive](https://i.imgur.com/Q1OiFxX.jpg)
 ### Current features
 * Finds the path for commands and then executes it
 * Shows some error messages when a command is not found.
@@ -70,13 +71,10 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 ```
 
 
-
-
 ## License
 
 This program is licensed under the terms of the GPL Open Source license and is available for free.
 This document is for the first shell release (1.0)
-
 
 
 
@@ -91,9 +89,10 @@ Editors
 * [Emacs](https://www.gnu.org/software/emacs/)
 
 Code
-* [Source code](https://github.com/aimeos/aimeos-typo3)
+* [Source code](https://github.com/rodrigocruz13/AirBnB_clone)
 
 Compilator
+* [Python](https://www.python.org/downloads/release/python-373/)
 * [gcc](https://www.gnu.org/software/gcc/)
 
 ## About
@@ -116,7 +115,14 @@ Kris Bredemeier - Holberton School (SF)
  -----  | ---- | -----
 ![Miguel](https://i.imgur.com/t5tSNmr.jpg)| Miguel Ángel Fajardo | 775@holbertonschool.com
 ![Rodrigo](https://i.imgur.com/36L7XQD.jpg)| Rodrigo Cruz | 754@holbertonschool.com
+
+
+To generate authors file, check this link out:
+https://github.com/moby/moby/blob/master/hack/generate-authors.sh
+
+
 #
+
 > SPECIAL THANKS
 > To all our peers, mentors, and staff from Holberton School in San Francisco, New Heaven and Bogota.
 >Every day is a journey for new discoveries, a route that you walk alone but do not feel that way, because
