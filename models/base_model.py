@@ -23,14 +23,13 @@ class BaseModel():
 
         self.updated_at = self.created_at
 
-
     def __str__(self):
         return ("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
-        """ Class method
         """
-        self.updated_at = datetime.datetime.now()
+        """
+        self.updated_at = str(datetime.datetime.now())
 
 
     def to_dict(self):
@@ -38,6 +37,11 @@ class BaseModel():
         """
         """d = {'id' : self.id, 'created_at' : self.created_at,
              'updated at' : self.updated_at}"""
-        dic = self.__dict__
+        dic = {}
+        olddic = self.__dict__
+        for key in olddic:
+            if key == self.created_at or key == self.updated_at:
+                dic[key] = olddic[key].isoformat()
+            dic[key] = olddic[key]
         dic['__class__'] = self.__class__.__name__
         return dic
