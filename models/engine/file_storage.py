@@ -32,9 +32,11 @@ class FileStorage():
         """
         serializes __objects to the JSON file (path: __file_path)
         """
-        with open(FileStorage.__file_path, 'a') as fileJ:
-            dictionary = to_dict(FileSrotage.objects)
-            json.dump(FileStorage.__objects, fileJ)
+        dictionary = {}
+        with open(FileStorage.__file_path, 'w') as fileJ:
+            for dic in FileStorage.__objects:
+                dictionary[dic] = BaseModel.to_dict(FileStorage.__objects[dic])
+            json.dump(dictionary, fileJ)
 
     def reload(self):
         """
@@ -43,7 +45,14 @@ class FileStorage():
         exist, no exception should be raised)
         """
         if os.path.exists(FileStorage.__file_path):
+            dictionary = {}
             with open(FileStorage.__file_path, 'r') as fileJ:
-                __objects = json.load(fileJ)
+                dictionary = json.load(fileJ)
+            """print("dic range:", len(dictionary))
+            print("__objects prev: ", FileStorage.__objects)
+            print("dictionary", dictionary)"""
+            for dic in dictionary:
+                BaseModel(dictionary[dic])
+            """print("__objects post: ", FileStorage.__objects)"""
         else:
             pass
