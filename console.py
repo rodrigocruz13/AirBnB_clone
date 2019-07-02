@@ -194,6 +194,30 @@ class HBNBCommand(cmd.Cmd):
         id, created_at and updated_at cant’ be updated.
         """
 
+        args = args.split(" ")
+        print(args, len(args))
+        if (args[0] == ""):
+            print("** class name missing **")
+        else:
+            if (args[0] not in cls_lst):
+                print("** class doesn't exist **")
+            else:
+                if (len(args) == 1 and args[0] in cls_lst):
+                    print("** instance id missing **")
+                else:
+                    key = args[0] + "." + args[1]
+                    dict_insts = storage.all()
+                    if (key not in dict_insts):
+                        print("** no instance found **")
+                    else:
+                        if (len(args) == 2):
+                            print("** attribute name missing **")
+                        else:
+                            new_value = ' '.join(args[3:])
+                            print(args[2], new_value)
+                            setattr(dict_insts[key], args[2], new_value)
+                            storage.save()
+
     """ II. helper functions: """
     def emptyline(self):
         """Repeat last empty line & clean the buffer"""
