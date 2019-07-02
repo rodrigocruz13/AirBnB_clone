@@ -2,6 +2,7 @@
 import json
 import os.path
 from ..base_model import BaseModel
+from ..user import User
 
 """ the module that storage instances to a json files"""
 
@@ -48,11 +49,11 @@ class FileStorage():
             dictionary = {}
             with open(FileStorage.__file_path, 'r') as fileJ:
                 dictionary = json.load(fileJ)
-            """print("dic range:", len(dictionary))
-            print("__objects prev: ", FileStorage.__objects)
-            print("dictionary", dictionary)"""
             for dic in dictionary:
-                BaseModel(dictionary[dic])
-            """print("__objects post: ", FileStorage.__objects)"""
+                nameClass = dic.split(".")[0]
+                if nameClass == "BaseModel":
+                    BaseModel(dictionary[dic])
+                elif nameClass == "User":
+                    User(dictionary[dic])
         else:
             pass
