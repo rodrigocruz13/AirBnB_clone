@@ -1,10 +1,9 @@
 #!/usr/bin/python3
+""" the module that storage instances to a json files"""
 import json
 import os.path
 from ..base_model import BaseModel
 from ..user import User
-
-""" the module that storage instances to a json files"""
 
 
 class FileStorage():
