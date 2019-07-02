@@ -22,12 +22,14 @@ class HBNBCommand(cmd.Cmd):
     """ I. documented functions: """
 
     def do_EOF(self, line):
-        """Quit command to exit the program"""
+        """Quit command to exit the program
+        """
         print("")
         return True
 
     def do_quit(self, args):
-        """Quit command to exit the program"""
+        """Quit command to exit the program
+        """
         raise SystemExit
 
     def do_create(self, args):
