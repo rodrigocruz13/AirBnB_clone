@@ -30,8 +30,8 @@ class BaseModel():
             for k in kwargs:
                 if k != '__class__':
                     if k == 'created_at' or k == 'updated_at':
-                        create[k] = datetime.datetime.strptime
-                        (kwargs[k], "%Y-%m-%dT%H:%M:%S.%f")
+                        create[k] = (datetime.datetime.strptime
+                                     (kwargs[k], "%Y-%m-%dT%H:%M:%S.%f"))
                     else:
                         create[k] = kwargs[k]
 
@@ -74,8 +74,10 @@ class BaseModel():
         dic = {}
         olddic = self.__dict__
         for key in olddic:
-            if key == 'created_at' or key == 'updated_at':
-                dic[key] = olddic[key].isoformat()
+            if key == 'created_at' :
+                dic[key] = self.created_at.isoformat()
+            elif key == 'updated_at':
+                dic[key] = self.updated_at.isoformat()
             else:
                 dic[key] = olddic[key]
         dic['__class__'] = self.__class__.__name__
