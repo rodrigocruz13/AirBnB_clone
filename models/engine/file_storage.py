@@ -30,7 +30,7 @@ class FileStorage():
         sets in __objects the obj with key <obj class name>.id
         """
         o = obj
-        FileStorage.__objects[str(o.__class__.__name__) + "." + str(o.id)] = o
+        FileStorage.__objects[o.__class__.__name__ + "." + o.id] = o
 
     def save(self):
         """
@@ -52,11 +52,11 @@ class FileStorage():
             dictionary = {}
             with open(FileStorage.__file_path, 'r') as fileJ:
                 dictionary = json.load(fileJ)
-            for dic in dictionary:
+            for dic, value in dictionary.items():
                 nameClass = dic.split(".")[0]
                 if nameClass == "BaseModel":
-                    BaseModel(dictionary[dic])
+                    FileStorage.__objects[dic] = BaseModel(**value)
                 elif nameClass == "User":
-                    User(dictionary[dic])
+                    FileStorage.__objects[dic] = User(**dictionary[dic])
         else:
             pass
