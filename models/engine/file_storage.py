@@ -29,7 +29,6 @@ class FileStorage():
         """
         sets in __objects the obj with key <obj class name>.id
         """
-        print("New object saved")
         o = obj
         FileStorage.__objects[o.__class__.__name__ + "." + o.id] = o
 
