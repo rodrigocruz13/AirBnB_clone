@@ -4,6 +4,11 @@ import json
 import os.path
 from ..base_model import BaseModel
 from ..user import User
+from ..state import State
+from ..city import City
+from ..amenity import Amenity
+from ..place import Place
+from ..review import Review
 
 
 class FileStorage():
@@ -48,15 +53,17 @@ class FileStorage():
         (__file_path) exists ; otherwise, do nothing. If the file doesn’t
         exist, no exception should be raised)
         """
+        classes = ["BaseModel", "User", "State", "City", "Amenity",
+                   "Place", "Review"]
         if os.path.exists(FileStorage.__file_path):
             dictionary = {}
             with open(FileStorage.__file_path, 'r') as fileJ:
                 dictionary = json.load(fileJ)
             for dic, value in dictionary.items():
                 nameClass = dic.split(".")[0]
-                if nameClass == "BaseModel":
-                    FileStorage.__objects[dic] = BaseModel(**value)
-                elif nameClass == "User":
-                    FileStorage.__objects[dic] = User(**dictionary[dic])
+                for clase in classes:
+                    if nameClass == clase:
+                        FileStorage.__objects[dic] = eval(nameClass)(**value)
+                        break
         else:
             pass
