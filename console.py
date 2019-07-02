@@ -24,13 +24,12 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """Quit command to exit the program
         """
-        print("")
         return True
 
     def do_quit(self, args):
         """Quit command to exit the program
         """
-        raise SystemExit
+        return True
 
     def do_create(self, args):
         """
@@ -198,7 +197,7 @@ class HBNBCommand(cmd.Cmd):
     """ II. helper functions: """
     def emptyline(self):
         """Repeat last empty line & clean the buffer"""
-        pass
+        return
 
 if __name__ == '__main__':
     cmd = HBNBCommand()
