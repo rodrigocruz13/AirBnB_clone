@@ -20,4 +20,10 @@ class User(BaseModel):
         pasword = ""
         first_name = ""
         last_name = ""
+
+        email = email
+        pasword = pasword
+        first_name = first_name
+        last_name = last_name
+
         BaseModel.__init__(self, *args, **kwargs)
