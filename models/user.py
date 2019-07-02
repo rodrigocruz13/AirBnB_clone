@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 from .base_model import BaseModel
 """
 module that define a class for the user
@@ -7,7 +8,7 @@ module that define a class for the user
 
 class User(BaseModel):
     """
-    user class, class that define users
+    User class, class that define users
     """
 
     def __init__(self, *args, **kwargs):

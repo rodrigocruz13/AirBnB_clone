@@ -3,6 +3,7 @@ import uuid
 import datetime
 import models
 
+
 class BaseModel():
     """
     BaseModel class, parent of other classes
@@ -41,8 +42,13 @@ class BaseModel():
             models.storage.new(self)
 
     def __str__(self):
-        return ("[{}] ({}) {}".format(self.__class__.__name__, self.id,
-                                      self.__dict__))
+        """
+        Returns a formated output of the class
+        """
+        s_cn = self.__class__.__name__
+        s_id = self.id
+        s_di = self.__dict__
+        return ("[{}] ({}) {}".format(s_cn, s_id, s_di))
 
     def save(self):
         """
@@ -52,9 +58,17 @@ class BaseModel():
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
-
-
     def to_dict(self):
+        """
+        Returns a dict with all keys/values of __dict__ of the instance:
+        - by using self.__dict__, only instance attributes set will be returned
+        - a key __class__ must be added to this dictionary with the class name
+        of the object
+        - created_at and updated_at must be converted to string object in ISO
+        format: --format: %Y-%m-%dT%H:%M:%S.%f (ex: 2017-06-14T22:31:03.285259)
+        ---you can use isoformat() of datetime object
+        """
+
         dic = {}
         olddic = self.__dict__
         for key in olddic:
