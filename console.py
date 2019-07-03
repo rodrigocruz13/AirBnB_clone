@@ -252,8 +252,6 @@ class HBNBCommand(cmd.Cmd):
         line = line.replace('.', ' ')
         new_line = line.split(' ')
 
-        print(new_line, len(new_line))
-
         if (len(new_line) == 2):
             if(new_line[1] in lst_cmd2 and new_line[0] in cls_lst):
                 if (new_line[1] == 'all'):
