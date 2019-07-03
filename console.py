@@ -52,8 +52,8 @@ class HBNBCommand(cmd.Cmd):
             new_class_instance = None
             if (args[0] in cls_lst):
                 new_class_instance = eval(args[0])()
-                print(new_class_instance.id)
                 new_class_instance.save()
+                print(new_class_instance.id)
 
         if new_class_instance is None:
             print("** class doesn't exist **")
@@ -78,7 +78,8 @@ class HBNBCommand(cmd.Cmd):
         if (args[0] == ''):
             for key in dict_insts.keys():
                 lst_inst.append(str(dict_insts[key]))
-            print(lst_inst)
+            if (len(lst_inst) > 0):
+                print(lst_inst)
         else:
             if (len(args) == 1 and args[0] not in cls_lst):
                 print("** class doesn't exist **")
@@ -87,7 +88,8 @@ class HBNBCommand(cmd.Cmd):
                     tokens = str_key.split(".")
                     if (tokens[0] == args[0]):
                         lst_inst.append(str(dict_insts[str_key]))
-                print(lst_inst)
+                if (len(lst_inst) > 0):
+                    print(lst_inst)
 
     def do_show(self, args):
         """
@@ -208,10 +210,16 @@ class HBNBCommand(cmd.Cmd):
                         if (len(args) == 2):
                             print("** attribute name missing **")
                         else:
-                            new_value = ' '.join(args[3:])
-                            new_value = new_value[1: -1]
-                            setattr(dict_insts[key], args[2], new_value)
-                            storage.save()
+                            s1 = "updated_at"
+                            s2 = "created_at"
+                            if (args[2] != s1 and args[2] != s2):
+                                new_val = ' '.join(args[3:])
+
+                                if (len(args[3:]) > 1):
+                                    new_val = new_val[1: -1]
+                                if (args[2] in dir(dict_insts[key])):
+                                    setattr(dict_insts[key], args[2], new_val)
+                                    storage.save()
 
     """ II. helper functions: """
     def emptyline(self):
