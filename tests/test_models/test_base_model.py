@@ -2,10 +2,10 @@
 """the unitest for BaseModel"""
 import unittest
 from models.base_model import BaseModel
-from os import remove
 import os
 import pep8
 from models import storage
+
 
 class TestBaseModel(unittest.TestCase):
     """this class test the class BaseModel
@@ -48,7 +48,7 @@ class TestBaseModel(unittest.TestCase):
         """
         self.assertIsNotNone(BaseModel.__doc__)
 
-    def test_has_attrb(self):
+    def test_has_method(self):
         """
         Test for the class have methods
         """
@@ -56,6 +56,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(BaseModel, "__str__"))
         self.assertTrue(hasattr(BaseModel, "save"))
         self.assertTrue(hasattr(BaseModel, "to_dict"))
+
+    def test_has_atribute(self):
+        """
+        Test for the atributes of the instance
+        """
+        self.assertTrue(self.base1.updated_at in self.base1.__dict__)
 
     def test_has_instance(self):
         """
