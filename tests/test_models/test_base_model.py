@@ -61,7 +61,10 @@ class TestBaseModel(unittest.TestCase):
         """
         Test for the atributes of the instance
         """
-        self.assertTrue(self.base1.updated_at in self.base1.__dict__)
+        print (self.base1.__dict__)
+        self.assertTrue('updated_at' in self.base1.__dict__)
+        self.assertTrue('created_at' in self.base1.__dict__)
+        self.assertTrue('id' in self.base1.__dict__)
 
     def test_has_instance(self):
         """
