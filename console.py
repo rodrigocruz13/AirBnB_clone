@@ -51,9 +51,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             new_class_instance = None
             if (args[0] in cls_lst):
-
-                print(args[0])
-
                 new_class_instance = eval(args[0])()
                 print(new_class_instance.id)
                 new_class_instance.save()
@@ -76,14 +73,12 @@ class HBNBCommand(cmd.Cmd):
 
         args = args.split(" ")
         dict_insts = storage.all()
-        print(args, len(args))
 
+        lst_inst = []
         if (args[0] == ''):
-            i = 0
             for key in dict_insts.keys():
-                print(dict_insts[key])
-                print(i)
-                i += 1
+                lst_inst.append(str(dict_insts[key]))
+            print(lst_inst)
         else:
             if (len(args) == 1 and args[0] not in cls_lst):
                 print("** class doesn't exist **")
@@ -91,7 +86,8 @@ class HBNBCommand(cmd.Cmd):
                 for str_key in dict_insts.keys():
                     tokens = str_key.split(".")
                     if (tokens[0] == args[0]):
-                        print(dict_insts[str_key])
+                        lst_inst.append(str(dict_insts[str_key]))
+                print(lst_inst)
 
     def do_show(self, args):
         """
@@ -146,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = args.split(" ")
 
-        if (len(args) == 0):
+        if (args[0] == ""):
             print("** class name missing **")
         else:
             if (args[0] not in cls_lst):
@@ -195,7 +191,6 @@ class HBNBCommand(cmd.Cmd):
         """
 
         args = args.split(" ")
-        print(args, len(args))
         if (args[0] == ""):
             print("** class name missing **")
         else:
@@ -214,7 +209,7 @@ class HBNBCommand(cmd.Cmd):
                             print("** attribute name missing **")
                         else:
                             new_value = ' '.join(args[3:])
-                            print(args[2], new_value)
+                            new_value = new_value[1: -1]
                             setattr(dict_insts[key], args[2], new_value)
                             storage.save()
 

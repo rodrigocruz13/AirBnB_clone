@@ -74,7 +74,7 @@ class BaseModel():
         dic = {}
         olddic = self.__dict__
         for key in olddic:
-            if key == 'created_at' :
+            if key == 'created_at':
                 dic[key] = self.created_at.isoformat()
             elif key == 'updated_at':
                 dic[key] = self.updated_at.isoformat()
