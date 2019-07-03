@@ -11,19 +11,7 @@ class User(BaseModel):
     User class, class that define users
     """
 
-    def __init__(self, *args, **kwargs):
-        """
-        public class atribute email, password first_name
-        last_name
-        """
-        email = ""
-        pasword = ""
-        first_name = ""
-        last_name = ""
-
-        email = email
-        pasword = pasword
-        first_name = first_name
-        last_name = last_name
-
-        BaseModel.__init__(self, *args, **kwargs)
+    email = ""
+    pasword = ""
+    first_name = ""
+    last_name = ""
