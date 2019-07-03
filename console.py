@@ -238,6 +238,42 @@ class HBNBCommand(cmd.Cmd):
         """Repeat last empty line & clean the buffer"""
         return
 
+    """ III. Other functions """
+    def default(self, line):
+
+        lst_cmd2 = ["all", "create"]
+        lst_cmd3 = ["show", "destroy"]
+
+        if ("." not in line):
+            return
+
+        line = line.replace('("', ' ')
+        line = line.replace('")', '')
+        line = line.replace('.', ' ')
+        new_line = line.split(' ')
+
+        print(new_line, len(new_line))
+
+        if (len(new_line) == 2):
+            if(new_line[1] in lst_cmd2 and new_line[0] in cls_lst):
+                if (new_line[1] == 'all'):
+                    HBNBCommand.do_all(self, new_line[0])
+                    return
+
+                if (new_line[1] == 'create'):
+                    HBNBCommand.do_create(self, new_line[0])
+                    return
+
+        if (len(new_line) == 3):
+            if(new_line[1] in lst_cmd3 and new_line[0] in cls_lst):
+                if (new_line[1] == 'show'):
+                    HBNBCommand.do_show(
+                        self, new_line[0] + " " + new_line[2])
+                if (new_line[1] == 'destroy'):
+                    HBNBCommand.do_destroy(
+                        self, new_line[0] + " " + new_line[2])
+            return
+
 if __name__ == '__main__':
     cmd = HBNBCommand()
     cmd.prompt = '(hbnb) '
