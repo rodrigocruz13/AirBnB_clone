@@ -248,7 +248,9 @@ class HBNBCommand(cmd.Cmd):
             return
 
         line = line.replace('("', ' ')
+        line = line.replace('(', '')
         line = line.replace('")', '')
+        line = line.replace(')', '')
         line = line.replace('.', ' ')
         new_line = line.split(' ')
 
