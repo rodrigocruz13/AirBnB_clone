@@ -263,8 +263,7 @@ class HBNBCommand(cmd.Cmd):
             new_line = line.split(',')
             argum = new_line[0]
             del new_line[0]
-            new_line = ("".join(new_line))
-            new_line = new_line.replace('" "', '", "')
+            new_line = (", ".join(new_line))
             new_line = new_line.replace(')', '')
             dictionary = eval(new_line)
 
