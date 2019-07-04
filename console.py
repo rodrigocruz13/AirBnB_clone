@@ -247,14 +247,19 @@ class HBNBCommand(cmd.Cmd):
 
         if ("." not in line):
             return
-
+        line = line.replace('",', '')
         line = line.replace('("', ' ')
         line = line.replace('(', '')
         line = line.replace('")', '')
         line = line.replace(')', '')
         line = line.replace('.', ' ')
+        line = line.replace('"', '')       
         new_line = line.split(' ')
 
+        if (len(new_line) > 5):
+            new_line = new_line[0:3] + new_line[5:6]
+
+        print(new_line)
         if (new_line[1] in lst_cmd5):
             if (len(new_line) == 2):
                 n_str = new_line[0]
