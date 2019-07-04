@@ -61,7 +61,6 @@ class TestBaseModel(unittest.TestCase):
         """
         Test for the atributes of the instance
         """
-        print (self.base1.__dict__)
         self.assertTrue('updated_at' in self.base1.__dict__)
         self.assertTrue('created_at' in self.base1.__dict__)
         self.assertTrue('id' in self.base1.__dict__)
@@ -80,6 +79,7 @@ class TestBaseModel(unittest.TestCase):
         test_id = test.id
         test.name = "Miguel"
         test.save()
+        BaseModel.save(test)
         storage.reload()
         objs = storage.all()
         my_objs = objs["BaseModel.{}".format(test_id)]
