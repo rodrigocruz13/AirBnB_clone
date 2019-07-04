@@ -21,22 +21,20 @@
 
 ## Files
 
-This is the list of the files required to compile and create the shell.
+This is the list of the files used for the console.
 
 | # | Type | File   | Description |
 | -- |------  |  -----------  | ----------- |
 |1|Documentation| README.md |Readme file|
-|2|Documentation|man_shell|Man page|
-|3| Header file| holberton.h | Main header. Contains the list of functions and libraries needed to compile the interpreter|
-|4|c file|catch_sig.c|Deals with the SIGINT signals|
-|5|c file|check_builtins.c|Checks if a command is a builtin|
-|6|c file|create_fork.c|Creates a child process to execute commands|
-|7|c file|create_loop.c|Waits for input and then sends off for processing|
-|8|c file|execute_cmd.c|Executes commands sent by user|
-|9|c file|get_input.c|Gets input from user|
-|10|c file|get_parsed_input.c|Parses input sent by user|
-|11|c file|get_path.c|Parses program path|
-|12|c file|get_tokens.c|Tokenizes user input|
+|3|py file|console.py|The complete console, to manage the data|
+|4|json file|file.json|the file that the data is storage|
+|5|py file|base_model|the base class that create the base information of the all clases|
+|6|py file|user|user class that inherit of BaseModel|
+|7|c file|place|place class that inherit of BaseModel|
+|8|c file|city|user class that inherit of BaseModel|
+|10|c file|review|Parses input sent by user|
+|11|c file|state|Parses program path|
+|12|c file|amenity|Tokenizes user input|
 |13|c file|main.c|Entry point for shell|
 |14|c file|process_tokens.c|Checks for built-ins and null commands|
 |15|c file|put_prompt.c| Prints prompt "$ " to terminal|
