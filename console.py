@@ -243,6 +243,7 @@ class HBNBCommand(cmd.Cmd):
 
         lst_cmd2 = ["all", "create"]
         lst_cmd3 = ["show", "destroy"]
+        lst_cmd5 = ["update"]
 
         if ("." not in line):
             return
@@ -253,6 +254,19 @@ class HBNBCommand(cmd.Cmd):
         line = line.replace(')', '')
         line = line.replace('.', ' ')
         new_line = line.split(' ')
+
+        if (new_line[1] in lst_cmd5):
+            if (len(new_line) == 2):
+                n_str = new_line[0]
+            if (len(new_line) == 3):
+                n_str = new_line[0] + " " + new_line[2]
+            if (len(new_line) == 4):
+                n_str = new_line[0] + " " + new_line[2] + " " + new_line[3]
+            if (len(new_line) == 5):
+                n_str = (new_line[0] + " " + new_line[2] + " " + new_line[3] +
+                         " " + new_line[4])
+            HBNBCommand.do_update(self, n_str)
+            return
 
         if (len(new_line) == 2):
             if(new_line[1] in lst_cmd2 and new_line[0] in cls_lst):
