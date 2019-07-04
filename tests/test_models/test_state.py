@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """the unitest for BaseModel"""
 import unittest
-from models.base_model import BaseModel
+from models.state import State
 import os
 import pep8
 from models import storage
 
 
-class TestBaseModel(unittest.TestCase):
-    """this class test the class BaseModel
+class TestUser(unittest.TestCase):
+    """this class test the class State
     """
 
     @classmethod
@@ -16,14 +16,14 @@ class TestBaseModel(unittest.TestCase):
         """
         set up the class before every test
         """
-        cls.base1 = BaseModel()
+        cls.state1 = State()
 
     @classmethod
     def teardown(cls):
         """
         remove test instances
         """
-        del cls.baseT
+        del cls.state1
         try:
             os.remove("file.json")
         except BaseException:
@@ -39,50 +39,49 @@ class TestBaseModel(unittest.TestCase):
         """
         Test if the model are documented
         """
-        for documen in dir(BaseModel):
+        for documen in dir(State):
             self.assertIsNotNone(documen.__doc__)
 
     def test_docstrign_class(self):
         """
         Test if the classes are documented
         """
-        self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(State.__doc__)
 
     def test_has_method(self):
         """
         Test for the class have methods
         """
-        self.assertTrue(hasattr(BaseModel, "__init__"))
-        self.assertTrue(hasattr(BaseModel, "__str__"))
-        self.assertTrue(hasattr(BaseModel, "save"))
-        self.assertTrue(hasattr(BaseModel, "to_dict"))
+        self.assertTrue(hasattr(State, "__init__"))
+        self.assertTrue(hasattr(State, "__str__"))
+        self.assertTrue(hasattr(State, "save"))
+        self.assertTrue(hasattr(State, "to_dict"))
 
     def test_has_atribute(self):
         """
         Test for the atributes of the instance
         """
-        print (self.base1.__dict__)
-        self.assertTrue('updated_at' in self.base1.__dict__)
-        self.assertTrue('created_at' in self.base1.__dict__)
-        self.assertTrue('id' in self.base1.__dict__)
+        self.assertTrue('updated_at' in self.state1.__dict__)
+        self.assertTrue('created_at' in self.state1.__dict__)
+        self.assertTrue('id' in self.state1.__dict__)
 
     def test_has_instance(self):
         """
         Test if the instance exist in the class
         """
-        self.assertIsInstance(self.base1, BaseModel)
+        self.assertIsInstance(self.state1, State)
 
     def test_save(self):
         """
         test for the save method
         """
-        test = BaseModel()
+        test = State()
         test_id = test.id
         test.name = "Miguel"
         test.save()
         storage.reload()
         objs = storage.all()
-        my_objs = objs["BaseModel.{}".format(test_id)]
+        my_objs = objs["State.{}".format(test_id)]
         self.assertTrue(hasattr(my_objs, "name"))
         self.assertTrue(my_objs.name == "Miguel")
         self.assertTrue(os.path.exists('file.json'))
@@ -91,7 +90,7 @@ class TestBaseModel(unittest.TestCase):
         """
         test for the dictionary
         """
-        dictionary_T = self.base1.to_dict()
+        dictionary_T = self.state1.to_dict()
         self.assertEqual(type(dictionary_T), dict)
         self.assertEqual(type(dictionary_T['updated_at']), str)
         self.assertEqual(type(dictionary_T['created_at']), str)
