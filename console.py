@@ -2,8 +2,15 @@
 
 import cmd
 import json
+
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+
 from models import storage
 
 cls_lst = ["BaseModel", "User", "State", "Amenity", "Place", "Review", "City"]
@@ -45,8 +52,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         args = args.split(" ")
-
-        if args[0] is None:
+        if args[0] == '':
             print("** class name missing **")
         else:
             new_class_instance = None
@@ -55,8 +61,8 @@ class HBNBCommand(cmd.Cmd):
                 new_class_instance.save()
                 print(new_class_instance.id)
 
-        if new_class_instance is None:
-            print("** class doesn't exist **")
+            if new_class_instance is None:
+                print("** class doesn't exist **")
 
     def do_all(self, args):
         """
@@ -109,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
 
         args = args.split(" ")
 
-        if (len(args) == 0):
+        if (args[0] == ''):
             print("** class name missing **")
         else:
             if (args[0] not in cls_lst):
@@ -195,36 +201,78 @@ class HBNBCommand(cmd.Cmd):
         args = args.split(" ")
         if (args[0] == ""):
             print("** class name missing **")
-        else:
-            if (args[0] not in cls_lst):
-                print("** class doesn't exist **")
-            else:
-                if (len(args) == 1 and args[0] in cls_lst):
-                    print("** instance id missing **")
-                else:
-                    key = args[0] + "." + args[1]
-                    dict_insts = storage.all()
-                    if (key not in dict_insts):
-                        print("** no instance found **")
-                    else:
-                        if (len(args) == 2):
-                            print("** attribute name missing **")
-                        else:
-                            s1 = "updated_at"
-                            s2 = "created_at"
-                            if (args[2] != s1 and args[2] != s2):
-                                new_val = ' '.join(args[3:])
+            return
 
-                                if (len(args[3:]) > 1):
-                                    new_val = new_val[1: -1]
-                                if (args[2] in dir(dict_insts[key])):
-                                    setattr(dict_insts[key], args[2], new_val)
-                                    storage.save()
+        if (args[0] not in cls_lst):
+            print("** class doesn't exist **")
+            return
+
+        if (len(args) == 1 and args[0] in cls_lst):
+            print("** instance id missing **")
+            return
+
+        key = args[0] + "." + args[1]
+        dict_insts = storage.all()
+        if (key not in dict_insts):
+            print("** no instance found **")
+            return
+
+        if (len(args) == 2):
+            print("** attribute name missing **")
+            return
+
+        if (args[2] != "updated_at" and args[2] != "created_at"):
+            if (len(args) < 4):
+                print("** value missing **")
+                return
+            else:
+                new_val = ' '.join(args[3:])
+                if (len(args[3:]) > 1):
+                    new_val = new_val[1: -1]
+
+                setattr(dict_insts[key], args[2], new_val)
+                storage.save()
 
     """ II. helper functions: """
     def emptyline(self):
         """Repeat last empty line & clean the buffer"""
         return
+
+    """ III. Other functions """
+    def default(self, line):
+
+        lst_cmd2 = ["all", "create"]
+        lst_cmd3 = ["show", "destroy"]
+
+        if ("." not in line):
+            return
+
+        line = line.replace('("', ' ')
+        line = line.replace('(', '')
+        line = line.replace('")', '')
+        line = line.replace(')', '')
+        line = line.replace('.', ' ')
+        new_line = line.split(' ')
+
+        if (len(new_line) == 2):
+            if(new_line[1] in lst_cmd2 and new_line[0] in cls_lst):
+                if (new_line[1] == 'all'):
+                    HBNBCommand.do_all(self, new_line[0])
+                    return
+
+                if (new_line[1] == 'create'):
+                    HBNBCommand.do_create(self, new_line[0])
+                    return
+
+        if (len(new_line) == 3):
+            if(new_line[1] in lst_cmd3 and new_line[0] in cls_lst):
+                if (new_line[1] == 'show'):
+                    HBNBCommand.do_show(
+                        self, new_line[0] + " " + new_line[2])
+                if (new_line[1] == 'destroy'):
+                    HBNBCommand.do_destroy(
+                        self, new_line[0] + " " + new_line[2])
+            return
 
 if __name__ == '__main__':
     cmd = HBNBCommand()
