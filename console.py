@@ -38,6 +38,18 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
+    def do_count(self, args):
+        """
+        Return the counts of classes
+        """
+        count = 0
+        dict_insts = storage.all()
+        for str_key in dict_insts.keys():
+            tokens = str_key.split(".")
+            if (tokens[0] == args):
+                count = count + 1
+        print(count)
+
     def do_create(self, args):
         """
         Usage: $ create <Class name>
@@ -50,7 +62,6 @@ class HBNBCommand(cmd.Cmd):
         If the class name doesn’t exist, prints ** class
         doesn't exist ** (ex: $ create MyModel)
         """
-
         args = args.split(" ")
         if args[0] == '':
             print("** class name missing **")
@@ -228,8 +239,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 new_val = ' '.join(args[3:])
                 if (len(args[3:]) > 1):
+                    print(new_val)
+                    print(new_val)
+                if (args[3][0] == '"' and args[3][len(args[3])-1] == '"'):
                     new_val = new_val[1: -1]
-
                 setattr(dict_insts[key], args[2], new_val)
                 storage.save()
 
@@ -241,7 +254,7 @@ class HBNBCommand(cmd.Cmd):
     """ III. Other functions """
     def default(self, line):
 
-        lst_cmd2 = ["all", "create"]
+        lst_cmd2 = ["all", "create", "count"]
         lst_cmd3 = ["show", "destroy"]
         lst_cmd5 = ["update"]
 
@@ -253,13 +266,12 @@ class HBNBCommand(cmd.Cmd):
         line = line.replace('")', '')
         line = line.replace(')', '')
         line = line.replace('.', ' ')
-        line = line.replace('"', '')       
+        line = line.replace('"', '')
         new_line = line.split(' ')
 
         if (len(new_line) > 5):
             new_line = new_line[0:3] + new_line[5:6]
 
-        print(new_line)
         if (new_line[1] in lst_cmd5):
             if (len(new_line) == 2):
                 n_str = new_line[0]
@@ -281,6 +293,10 @@ class HBNBCommand(cmd.Cmd):
 
                 if (new_line[1] == 'create'):
                     HBNBCommand.do_create(self, new_line[0])
+                    return
+
+                if (new_line[1] == 'count'):
+                    HBNBCommand.do_count(self, new_line[0])
                     return
 
         if (len(new_line) == 3):
