@@ -245,6 +245,26 @@ class HBNBCommand(cmd.Cmd):
         lst_cmd3 = ["show", "destroy"]
         lst_cmd5 = ["update"]
 
+        if "{" in line:
+            argum = ""
+            new_line = line.split(',')
+            argum = new_line[0]
+            del new_line[0]
+            new_line = ("".join(new_line))
+            new_line = new_line.replace('" "', '", "')
+            new_line = new_line.replace(')', '')
+            dictionary = eval(new_line)
+
+            argum = argum.replace('.', ' ')
+            argum = argum.replace('("', ' ')
+            argum = argum.replace('"', '')
+            argum = argum.split(' ')
+            for key in dictionary:
+                comando = (argum[0] + " " + argum[2] + " " + key + " " +
+                           str(dictionary[key]))
+                HBNBCommand.do_update(self, comando)
+            return
+
         if ("." not in line):
             return
         line = line.replace('",', '')
@@ -253,7 +273,7 @@ class HBNBCommand(cmd.Cmd):
         line = line.replace('")', '')
         line = line.replace(')', '')
         line = line.replace('.', ' ')
-        line = line.replace('"', '')       
+        line = line.replace('"', '')
         new_line = line.split(' ')
 
         if (len(new_line) > 5):
