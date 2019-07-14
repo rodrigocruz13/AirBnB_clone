@@ -1,0 +1,24 @@
+header {
+    color: white;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+   }
+
+.logo {
+    width: 100%;
+    height: 100%;
+    /*With out themt, the image is not shown*/
+
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    background-position: 20px center;
+}
+/*
+Header:
+color: white
+height: 70px
+width: 100%
+border bottom 1px #CCCCCC
+logo align on left and center vertically (20px space at the left)
+*/
