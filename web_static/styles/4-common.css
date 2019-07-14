@@ -1,0 +1,26 @@
+body {
+    margin: unset;
+    padding: unset;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+   }
+   
+.container {
+    max-width: 1000px;
+/*    margin-top: 30px;
+    margin-bottom: 30px;*/
+    margin: 30px auto;
+    padding: 30px;
+}
+
+/*
+Container:
+    between header and footer tags, add a div:
+    classname: container
+    max width 1000px
+    margin top and bottom 30px - 
+    it should be 30px under 
+    the bottom of the header 
+    (screenshot) center horizontally
+*/
