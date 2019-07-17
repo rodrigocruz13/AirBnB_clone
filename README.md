@@ -3,9 +3,18 @@
 :rocket: Star us on GitHub  *it helps*! :rocket:
 
 ![mrbnb-logo](https://i.imgur.com/ayxTyyL.jpg)
-
+An AirBnB Clone
+#
 
 **mr bnb - AirBnB Clone** is the best place for getting a place to rent.  You can install it in your Linux distribution and you can use it intermediately according to your needs.
+
+## Proyect diagram
+
+![Diagram](https://i.imgur.com/UpwCX6L.png)
+
+## File organization
+
+![File structure](https://i.imgur.com/F6Mapea.png)
 
 ### Screenshots
 #### a. Interactive
@@ -30,43 +39,18 @@ This is the list of the files used for the console.
 |4|json file|file.json|the file that the data is storage|
 |5|py file|base_model|the base class that create the base information of the all clases|
 |6|py file|user|user class that inherit of BaseModel|
-|7|c file|place|place class that inherit of BaseModel|
-|8|c file|city|user class that inherit of BaseModel|
-|10|c file|review|Parses input sent by user|
-|11|c file|state|Parses program path|
-|12|c file|amenity|Tokenizes user input|
-|13|c file|main.c|Entry point for shell|
-|14|c file|process_tokens.c|Checks for built-ins and null commands|
-|15|c file|put_prompt.c| Prints prompt "$ " to terminal|
-|16|Executable file|hsh||
-
-If you want to install **hsh shell**, the source [files are here]([https://github.com/ryanhudson/draft_shell/tree/master](https://github.com/ryanhudson/draft_shell/tree/master)). You can download them, compile then and install it with no further permission.
-#####  Caution: Install the shell under your own risk !
 
 
+## Web
 
+![No interactive](https://cdn4.iconfinder.com/data/icons/under-construction-1/512/sign-256.png)
 
-## Compiling process
-The files will be compiled using GNU Compiler (gcc):
-```sh
-gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
-```
+If you want to you can visit us in out web page:
 
+[mrBnB web page](C:\R\AirBnB_clone\web_static)
 
+![mrBnB web page](https://i.imgur.com/C0O8NAB.png)
 
-## Usage
-
-`Run the executable file for starting the shell: ./hsh`
-- Type any command that you would use inside the regular shell and hit enter.
-- The output of the command is shown, or an error message is displayed if the command was not found.
-
-### Example Usage
-```
-- $				The prompt is displayed after typing: ./hsh`
-- $ /bin/ls		Executes the command ls`
-- $ pwd			Shows the current directory`
-- $ exit 		Exits the program`
-```
 
 
 ## License
@@ -119,12 +103,12 @@ To generate authors file, check this link out:
 https://github.com/moby/moby/blob/master/hack/generate-authors.sh
 
 
-#
-
-> SPECIAL THANKS
+## SPECIAL THANKS
 > To all our peers, mentors, and staff from Holberton School in San Francisco, New Heaven and Bogota.
 >Every day is a journey for new discoveries, a route that you walk alone but do not feel that way, because
 without your time, help and dedication to try to explain those issues that we do not understand, none of
 this would have been possible.
 
-![logo](https://i.imgur.com/LXW9lwr.png)
+![logo](https://i.imgur.com/Be5IMsL.jpg)
+
+Copyright © 2019. Miguel Ángel Fajardo - Rodrigo Cruz. 
