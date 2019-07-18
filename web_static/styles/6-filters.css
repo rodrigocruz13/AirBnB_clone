@@ -82,8 +82,10 @@ section.filters ul.popover {
     max-width: 100%;
     border: 1px solid#DDDDDD;
     border-radius: 4px;
-    margin: -11% 0;         /*Align to the base of loc or amen*/
-    padding-bottom: 11%;    /*Fix the area trimmed by margin at the bottom*/    
+    margin: -11% 0;         /* Align to the base of loc or amen */
+    padding-bottom: 11%;    /* Fix the area trimmed by margin at the bottom */
+    z-index: 1;             /* 1 = Closer to the background and wont
+                            interfere with other boxes*/
 }
 
 .locations:hover ul.popover{
